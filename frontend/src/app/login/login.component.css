@@ -1,0 +1,136 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #87ceeb, #1e3a8a); /* gradiente fundo */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  /* Ícones animados no fundo */
+  .weather-icon {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Animação de ícones flutuantes */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Ícones - Sol, Nuvem */
+  .weather-icon.sun {
+    top: 20%;
+    left: 10%;
+    color: #ececec;
+  }
+  
+  .weather-icon.cloud {
+    top: 40%;
+    right: 20%;
+    color: #ffffff;
+  }
+  
+  .weather-icon.rain {
+    bottom: 10%;
+    left: 30%;
+    color: #1e90ff;
+  }
+  
+
+  .login-container {
+    background: rgba(255, 255, 255, 0.9); /* Transparência suave */
+    color: #333;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    padding: 25px 35px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .login-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1e3a8a;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-container p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  
+  /* Formulário */
+  form div {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  form label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #1e3a8a;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  form input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #3a82f6;
+    border-color: #3a82f6;
+  }
+  button {
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(to right, #3a82f6, #1e90ff);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+
+  
+  button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(to right, #1e90ff, #3a82f6);
+  }
+  
+  /* Mensagem de erro */
+  p[style] {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: red;
+  }
+  
+  /* Efeito de sombra no container */
+  .login-container:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+  

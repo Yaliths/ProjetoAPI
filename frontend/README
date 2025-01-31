@@ -1,0 +1,7 @@
+README
+
+guiaturistico.main --> Npm intall  --->    ng serve
+guiaturistico.main/webservice --> node .\app.js
+
+
+API's: Weather Api; Foursquare Api, Ipify Api

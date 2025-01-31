@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <i class="weather-icon sun fa fa-sun"></i>
+    <i class="weather-icon cloud fa fa-cloud"></i>
+    <i class="weather-icon rain fa fa-cloud-rain"></i>
+    
+    <div>
+      <div>
+
+      </div>
+      <div class="register-container">
+        <h2>Registe-se</h2>
+        <div>
+          <form (ngSubmit)="onRegister()">
+  
+            <label for="email">Email:</label>
+            <input
+              id="email"
+              type="text"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="Introduza um email" 
+              required/>
+              <br>
+          
+            <label for="password">Password:</label>
+            <input
+              id="password"
+              type="password"
+              [(ngModel)]="password"
+              (ngModelChange)="verificationPassword()"
+              name="password"
+              placeholder="Introduza uma password"
+              required
+            /><br />
+            <p>Confirme a sua password</p>
+            <input
+              type="password"
+              id="password"
+              [(ngModel)]="passwordconfirm"
+              name="password"
+              placeholder="Introduza novamente a password"
+              required/>
+            <br>
+            <p
+              class="errorMensage"
+              *ngIf="password != passwordconfirm && passwordCaracteres == false"
+            >
+              password do not match
+            </p>
+          <br>
+            <button
+              type="submit"
+              [ngClass]="{
+                'disabled-register': passwordCaracteres || password != passwordconfirm
+              }"
+            >
+              Register
+            </button>
+          </form>
+          <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
+
+        </div>
+        
+        
+      </div>
+    </div>
+  </body>
+</html>
+

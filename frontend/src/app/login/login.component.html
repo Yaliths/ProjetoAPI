@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- Ícones no fundo -->
+    <i class="weather-icon sun fa fa-sun"></i>
+    <i class="weather-icon cloud fa fa-cloud"></i>
+    <i class="weather-icon rain fa fa-cloud-rain"></i>
+    
+
+    <div class="login-container">
+      <h2>Bem-vindo ao Guia do Tempo</h2>
+      <p>Faça login para explorar o clima e os destinos personalizados</p>
+      <form (ngSubmit)="onSubmit()">
+        <div>
+          <label for="Email">Email:</label>
+          <input
+            id="Email"
+            type="text"
+            [(ngModel)]="email"
+            name="Email"
+            placeholder="Introduza o seu email"
+            required
+          />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Introduza a sua password"
+            required
+          />
+        </div>
+        <button (click)="onSubmit()">Entrar</button>
+      </form><br>
+      <button (click)="goToRegister()">Registar</button>
+
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    </div>
+  </body>
+</html>
