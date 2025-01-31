@@ -1,8 +1,9 @@
 const { createClient } = require("@supabase/supabase-js");
-
+const SUPABASE_API_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1Znhubm5ub3llcWxpaWd6bW55Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc1NDk5OTUsImV4cCI6MjA1MzEyNTk5NX0.Ui1p35KtjUEzVMxHImA0KxB-aWVRZox-EzACJTP3dFA"; // https://supabase.io/docs/reference/javascript/insert
 const SUPABASE_URL = "https://bufxnnnnoyeqliigzmny.supabase.co";
 
-const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_API_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY);
 
 exports.registerUser = async (req, res) => {
   const { email, password } = req.body;

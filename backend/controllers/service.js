@@ -1,8 +1,12 @@
 const { createClient } = require("@supabase/supabase-js");
 
+const WEATHER_API_KEY = "91f8a43f969b4616a8a114258252201 "; // https://www.weatherapi.com/
+const FOURSQUARE_API_KEY = "fsq37kIRpIEU9sKtnieKG7sudTCMe2jQcZezVCGYb0ZXWwk="; // https://developer.foursquare.com/docs
+const SUPABASE_API_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1Znhubm5ub3llcWxpaWd6bW55Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc1NDk5OTUsImV4cCI6MjA1MzEyNTk5NX0.Ui1p35KtjUEzVMxHImA0KxB-aWVRZox-EzACJTP3dFA"; // https://supabase.io/docs/reference/javascript/insert
 const SUPABASE_URL = "https://bufxnnnnoyeqliigzmny.supabase.co";
 
-const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_API_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY);
 
 async function getWeatherAndPlaces(city, country, date) {
   try {
@@ -10,7 +14,7 @@ async function getWeatherAndPlaces(city, country, date) {
 
     // 1. Buscar clima na WeatherAPI para a data especificada
     const weatherResponse = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${locationQuery}&dt=${date}`
+      `https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${locationQuery}&dt=${date}&lang=pt`
     );
     if (!weatherResponse.ok) throw new Error("Erro ao buscar clima.");
     const weatherData = await weatherResponse.json();
@@ -36,20 +40,12 @@ async function getWeatherAndPlaces(city, country, date) {
       category = "13059,10000,13019,10069,16026,16041"; // Categorias ao ar livre
     }
 
-    // 3. Buscar o endereço IP
-    const ipResponse = await fetch("https://api.ipify.org?format=json");
-    if (!ipResponse.ok) throw new Error("Erro ao buscar o IP.");
-    const ipData = await ipResponse.json();
-    const userIP = ipData.ip;
-
-    console.log(`IP do usuário: ${userIP}`);
-
-    // 4. Buscar lugares na Foursquare Places API
+    // 3. Buscar lugares na Foursquare Places API
     const placesResponse = await fetch(
       `https://api.foursquare.com/v3/places/search?near=${city}, ${country}&categories=${category}&limit=10`,
       {
         headers: {
-          Authorization: process.env.FOURSQUARE_API_KEY,
+          Authorization: FOURSQUARE_API_KEY,
         },
       }
     );
@@ -58,13 +54,12 @@ async function getWeatherAndPlaces(city, country, date) {
     console.log(placesData.results[0].name);
     const names = placesData.results.map((result) => result.name);
 
-    // 5. Salvar os dados no Supabase
+    // 4. Salvar os dados no Supabase
     const { data, error } = await supabase.from("Teste").insert([
       {
         county: country,
         city: city,
         data: date,
-        ip: userIP,
         weather: weatherDescription,
         temp: temperature,
         nome: names,
