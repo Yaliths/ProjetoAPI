@@ -26,6 +26,16 @@ export class RegisterComponent {
     private router: Router
   ) {}
 
+
+  vericficationEmail(): void {
+    //verifica se o email tem @
+    if (this.email.includes('@')) {
+      this.errorMessage = '';
+    } else {
+      this.errorMessage = 'Email inválido';
+    }
+  }
+
   verificationPassword(): void {
     //verifica se a password tem menos de 8 caracteres
     if (this.password.length < 8) {
@@ -34,6 +44,19 @@ export class RegisterComponent {
     } else {
       this.passwordCaracteres = false;
     }
+  }
+
+  isPasswordValid(): boolean {
+    const password = this.password;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const hasMinLength = password.length >= 8;
+    this.passwordCaracteres = hasUpperCase && hasSpecialChar && hasMinLength;
+    return this.passwordCaracteres;
+  }
+
+  doPasswordsMatch(): boolean {
+    return this.password === this.passwordconfirm; 
   }
 
   onRegister(): void {

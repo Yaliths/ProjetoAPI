@@ -1,7 +1,11 @@
 README
 
-guiaturistico.main --> Npm intall  --->    ng serve
+entar no frontend e fazer Npm intall  --->ng serve
 guiaturistico.main/webservice --> node .\app.js
 
+com Docker:
+
+na pasta frontend correr npm install
+na pagina principal correr o comando docker-compose up  --build 
 
 API's: Weather Api; Foursquare Api, Ipify Api

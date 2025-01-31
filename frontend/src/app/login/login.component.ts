@@ -18,6 +18,15 @@ export class LoginComponent {
 
   constructor(private router: Router, private userAPI: userAPI) {}
 
+  vericficationEmail(): void {
+    //verifica se o email tem @
+    if (this.email.includes('@')) {
+      this.errorMessage = '';
+    } else {
+      this.errorMessage = 'Email inválido';
+    }
+  }
+
   onSubmit(): void {
     console.log('Tentando logar...');
     this.userAPI.logIn(this.email, this.password).subscribe({
@@ -36,7 +45,6 @@ export class LoginComponent {
   }
 
   goToRegister(): void {
-    console.log('entrei');
     this.router.navigate(['/register']);
   }
 }

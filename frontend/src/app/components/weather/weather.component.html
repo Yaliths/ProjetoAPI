@@ -1,14 +1,13 @@
 <html>
-  <head>
-
-  </head>
+  <head> </head>
   <body>
     <header>
-      <button class="logout-btn"(click)="logout()">Log out</button>
+      <div></div>
+      <button class="logout-btn" (click)="logout()">Log out</button>
     </header>
     <div class="container">
-<br>
-<br>
+      <br />
+      <br />
       <h1>Qual é o seu destino?</h1>
       <!-- Formulário de Pesquisa -->
       <div class="search-container">
@@ -16,6 +15,7 @@
           <label for="city">Cidade:</label>
           <input
             id="city"
+            type="text"
             [(ngModel)]="city"
             placeholder="Digite a cidade"
             required
@@ -25,24 +25,27 @@
           <label for="country">País:</label>
           <input
             id="country"
+            type="text"
             [(ngModel)]="country"
             placeholder="Digite o país"
             required
           />
+          <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
         </div>
         <div>
           <label for="date">Data:</label>
           <input id="date" type="date" [(ngModel)]="date" required />
         </div>
-        <button class="search-btn" type="submit" (click)="search()">Pesquisar</button>
+        <button class="search-btn" type="submit" (click)="search()">
+          Pesquisar
+        </button>
       </div>
-      
+
       <!-- Resultados -->
       <div *ngIf="data?.length > 0" class="results-container">
         <h2>Resultados</h2>
-        <div *ngIf="weather?.description">
-          <p>Descrição: {{ weather.description }}</p>
-          <!-- <p>Temperatura: {{ weather.temperature }}°C</p> -->
+        <div class="tempo" *ngIf="weather?.description">
+          <p>Clima: {{ weather.description }}</p>
         </div>
         <ul>
           <li *ngFor="let result of data; let i = index" class="result-item">
@@ -53,17 +56,7 @@
           </li>
         </ul>
       </div>
-      <footer>
-  
-      </footer>
-
+      <footer></footer>
     </div>
-    
-    
-
-
   </body>
-  
 </html>
-
-

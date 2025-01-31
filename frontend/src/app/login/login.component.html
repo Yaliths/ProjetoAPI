@@ -18,12 +18,14 @@
           <label for="Email">Email:</label>
           <input
             id="Email"
-            type="text"
+            type="email"
             [(ngModel)]="email"
+            (ngModelChange)="vericficationEmail()"
             name="Email"
             placeholder="Introduza o seu email"
             required
           />
+          
         </div>
         <div>
           <label for="password">Password:</label>
@@ -36,11 +38,11 @@
             required
           />
         </div>
+        <p *ngIf="errorMessage" style="color: red;">Email ou password incorretos. Por favor tente novamente.</p>
         <button (click)="onSubmit()">Entrar</button>
       </form><br>
       <button (click)="goToRegister()">Registar</button>
-
-      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+      <a href="" style="text-decoration: none; margin-top: 20px; display: flex; justify-content: center;">Recuperar password</a>
     </div>
   </body>
 </html>

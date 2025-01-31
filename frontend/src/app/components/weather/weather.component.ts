@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./weather.component.css'],
 })
 export class WeatherComponent {
+  userIP: string = '';
+  errorMessage: string = '';  
   city: string = '';
   country: string = '';
   date: string = '';
@@ -24,12 +26,23 @@ export class WeatherComponent {
   weather: any;
 
   constructor(
-    private http: HttpClient,
     private ApiService: ApiService,
     private useApi: userAPI,
     private router: Router
   ) {}
 
+  async ngOnInit(): Promise<void> {
+    try {
+      // Buscar o endereço IP do usuário
+      const isResponse = await fetch('https://api.ipify.org?format=json');
+      if(!isResponse.ok) throw new Error('Erro ao buscar IP');
+      const ipData = await isResponse.json();
+      this.userIP = ipData.ip;
+      console.log(`IP do usuário: ${this.userIP}`);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   search(): void {
     this.ApiService.getWeatherAndPlaces(
       this.city,
@@ -40,8 +53,10 @@ export class WeatherComponent {
         console.log('Dados obtidos:', res);
         this.data = res.places; // Lista de lugares
         this.weather = res.weather; // Dados do clima
+        this.errorMessage = ''; // Limpa a mensagem de erro
       },
       error: (err) => {
+        this.errorMessage = 'Erro ao buscar dados, tente novamente.';	
         console.error('Erro ao buscar dados:', err);
       },
     });

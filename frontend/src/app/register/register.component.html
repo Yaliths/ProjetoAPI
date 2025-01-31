@@ -8,10 +8,7 @@
     <i class="weather-icon cloud fa fa-cloud"></i>
     <i class="weather-icon rain fa fa-cloud-rain"></i>
     
-    <div>
-      <div>
-
-      </div>
+    <div class="main-container">
       <div class="register-container">
         <h2>Registe-se</h2>
         <div>
@@ -20,53 +17,58 @@
             <label for="email">Email:</label>
             <input
               id="email"
-              type="text"
+              type="email"
               [(ngModel)]="email"
+              (ngModelChange)="vericficationEmail()"
               name="email"
               placeholder="Introduza um email" 
               required/>
-              <br>
+              <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
           
             <label for="password">Password:</label>
             <input
               id="password"
               type="password"
               [(ngModel)]="password"
-              (ngModelChange)="verificationPassword()"
+              (ngModelChange)="isPasswordValid()"
               name="password"
               placeholder="Introduza uma password"
               required
-            /><br />
-            <p>Confirme a sua password</p>
+            />
+            <p *ngIf="!passwordCaracteres" style="color: green; text-align: left;">
+              A palavra-passe deve conter pelo menos 8 caracteres.
+              <br>
+              Uma letra maiúscula
+              <br>
+              Um número e um carácter especial.
+            </p>
+            <br />
+            <label for="passwordconfirm">Confirme a sua password: </label>
             <input
               type="password"
-              id="password"
+              id="passwordconfirm"
               [(ngModel)]="passwordconfirm"
-              name="password"
+              (ngModelChange)="doPasswordsMatch()"
+              name="passwordconfirm"
               placeholder="Introduza novamente a password"
               required/>
             <br>
             <p
-              class="errorMensage"
-              *ngIf="password != passwordconfirm && passwordCaracteres == false"
+              *ngIf="!doPasswordsMatch()"
+              style="color: red"
             >
-              password do not match
+              Password não coincide
             </p>
           <br>
             <button
               type="submit"
-              [ngClass]="{
-                'disabled-register': passwordCaracteres || password != passwordconfirm
-              }"
+              [disabled]="!doPasswordsMatch() || !passwordCaracteres"
+              [ngClass]="{'disabled-button': !doPasswordsMatch() || !passwordCaracteres}"
             >
-              Register
+              Registar
             </button>
           </form>
-          <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
-
-        </div>
-        
-        
+        </div>        
       </div>
     </div>
   </body>

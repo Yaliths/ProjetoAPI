@@ -1,24 +1,27 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #ffffff;
 
   margin: 0;
-  padding: 20px;
 }
 
+.tempo {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tempo p {
+  color: #010101;
+}
 
 header {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-background: white;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-padding: 15px 30px;
-display: flex;
-justify-content: flex-end; 
-align-items: center;
-z-index: 1000;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
 }
 
 /* Botão de Logout */
@@ -29,24 +32,23 @@ z-index: 1000;
   padding: 8px 20px;
   font-size: 14px;
   font-weight: bold;
+  display: flex;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .logout-btn:hover {
-background: #c9c9c9;
+  background: #c9c9c9;
 }
-
 
 h1 {
   text-align: center;
   font-size: 2.5rem;
-  color:#1e3a8a;
+  color: #1e3a8a;
   margin-bottom: 30px;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 
 .search-container {
   background: rgba(255, 255, 255, 0.9);
@@ -90,11 +92,10 @@ h1 {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-  align-self: center; 
-  max-width: 200px; 
-  width: 100%; 
+  align-self: center;
+  max-width: 200px;
+  width: 100%;
 }
-
 
 .search-btn:hover {
   transform: translateY(-3px);
